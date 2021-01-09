@@ -14,7 +14,7 @@ export default function Orders() {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
 
-  const fetchDate = () => {
+  const fetchData = () => {
     setIsLoading(true);
     fetchOrders()
       .then((response) => setOrders(response.data))
@@ -24,7 +24,7 @@ export default function Orders() {
 
   useEffect(() => {
     if (isFocused) {
-      fetchDate();
+      fetchData();
     } 
   }, [isFocused]);
 
