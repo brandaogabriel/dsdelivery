@@ -2,6 +2,8 @@
 
 A api foi desenvolvida durante a 2ª Semana do Devsuperior.
 
+A implantação da api foi feita utilizando o heroku.
+
 **Atenção**: Você precisa ter o java jdk 11 instalado na sua máquina bem como o `PATH_VARIABLE` do java configurado e uma IDE de sua preferência.
 
 **O backend está setado em modo de teste, dessa forma, não é necessário nenhum tipo de configuração para banco de dados, pois está sendo utilizado o banco de dados em memória (H2).**
