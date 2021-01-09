@@ -52,5 +52,5 @@ Os seguintes endpoints estão configurados:
 
 
 ## 💾 Dados para povoar a api
-Na pasta `src/main/resources` existe um arquivo **data.sql** com alguns dados ja adicionados,
-para inserir novos dados, basta inclui-los no arquivo. 
+Na pasta `src/main/resources` existe um arquivo **data.sql** com alguns dados já adicionados,
+para inserir novos dados, basta incluí-los no arquivo. 
