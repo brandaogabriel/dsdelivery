@@ -1,17 +1,52 @@
-import React from "react";
-import { StyleSheet, ScrollView, View } from "react-native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, ScrollView, Alert, Text } from "react-native";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { fetchOrders } from "../api";
 import Header from "../Header";
 
-import OrderCard from '../OrderCard';
+import OrderCard from "../OrderCard";
+import { Order } from "../types";
 
 export default function Orders() {
-  const handleOnPress = () => {};
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigation = useNavigation();
+  const isFocused = useIsFocused();
+
+  const fetchDate = () => {
+    setIsLoading(true);
+    fetchOrders()
+      .then((response) => setOrders(response.data))
+      .catch(() => Alert.alert("Houve um error ao buscar os pedidos"))
+      .finally(() => setIsLoading(false));
+  };
+
+  useEffect(() => {
+    if (isFocused) {
+      fetchDate();
+    } 
+  }, [isFocused]);
+
+  const handleOnPress = (order: Order) => {
+    navigation.navigate("OrderDetails", {
+      order
+    });
+  };
 
   return (
     <>
       <Header />
       <ScrollView style={styles.container}>
-        <OrderCard />
+        {isLoading ? (
+          <Text style={styles.text}> Buscando pedidos...</Text>
+        ) : (
+          orders.map((order) => (
+            <TouchableWithoutFeedback key={order.id} onPress={() => handleOnPress(order)}>
+              <OrderCard order={order} />
+            </TouchableWithoutFeedback>
+          ))
+        )}
       </ScrollView>
     </>
   );
@@ -19,7 +54,11 @@ export default function Orders() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingRight: '5%',
-    paddingLeft: '5%',
-  }
+    paddingRight: "5%",
+    paddingLeft: "5%",
+  },
+  text: {
+    textAlign: "center",
+    marginTop: "5%",
+  },
 });

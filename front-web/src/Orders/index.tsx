@@ -73,7 +73,7 @@ function Orders() {
     <div className="orders-container">
       <StepsHeader />
       {isLoading ? (
-        <h1>Buscando pedidos...</h1>
+        <h1>Buscando produtos...</h1>
       ) : (
         <ProductsList
           products={products}
