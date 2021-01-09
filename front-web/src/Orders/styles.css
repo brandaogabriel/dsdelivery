@@ -1,3 +1,7 @@
+h1 {
+  text-align: center;
+}
+
 .orders-container {
   background-color: var(--light-color);
 }

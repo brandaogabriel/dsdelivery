@@ -15,16 +15,20 @@ function Orders() {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
   const [orderLocation, setOrderLocation] = useState<OrderLocationData>();
+  const [isLoading, setLoading] = useState(false);
+
   const totalPrice = Number(
     selectedProducts.reduce((ac, val) => ac + val.price, 0)
   );
 
   useEffect(() => {
+    setLoading(true);
     fetchProducts()
       .then((response) => setProducts(response.data))
       .catch(() => {
-        toast.warning('Erro ao listar os produtos');
-      });
+        toast.warning("Erro ao listar os produtos");
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   const handleSelectProduct = (product: Product) => {
@@ -51,27 +55,32 @@ function Orders() {
 
     if (verifyPayload) {
       saveOrder(payload)
-      .then((response) => {
-        toast.error(`Pedido enviado com sucesso! Nº ${response.data.id}`);
-        setSelectedProducts([]);
-      })
-      .catch(() => {
-        toast.warning("Erro ao enviar pedido.");
-      });
-    } else { 
-      toast.warning('Nenhum produto foi selecionado ou endereço não cadastrado.');
+        .then((response) => {
+          toast.error(`Pedido enviado com sucesso! Nº ${response.data.id}`);
+          setSelectedProducts([]);
+        })
+        .catch(() => {
+          toast.warning("Erro ao enviar pedido.");
+        });
+    } else {
+      toast.warning(
+        "Nenhum produto foi selecionado ou endereço não cadastrado."
+      );
     }
-
   };
 
   return (
     <div className="orders-container">
       <StepsHeader />
-      <ProductsList
-        products={products}
-        onSelectedProduct={handleSelectProduct}
-        selectedProducts={selectedProducts}
-      />
+      {isLoading ? (
+        <h1>Buscando pedidos...</h1>
+      ) : (
+        <ProductsList
+          products={products}
+          onSelectedProduct={handleSelectProduct}
+          selectedProducts={selectedProducts}
+        />
+      )}
       <OrderLocation
         onChangeLocation={(location) => setOrderLocation(location)}
       />
