@@ -16,10 +16,10 @@ A aplicação foi desenvolvida com typescript e react native.
 Feitos os passos acima, execute `npm start`.
 
 **Usuários iOS**:
-- Abra a câmera do celular e scanei o qr code que será gerado quando a aplicação inicializar.
+- Abra a câmera do celular e escaneie o qr code que será gerado quando a aplicação inicializar.
 
 **Usuários android**: 
-- Abra o aplicativo `Expo` e scanei o qrcode. 
+- Abra o aplicativo `Expo` e escaneie o qr code. 
 
 Agora você pode testar a aplicação normalmente.
 
