@@ -9,7 +9,7 @@ import { OrderLocationData, Product } from "./types";
 import { fetchProducts, saveOrder } from "../api";
 import OrderLocation from "./OrderLocation";
 import OrderSummary from "./OrderSummary";
-import { checkIsSelected } from "./helpers";
+import { checkIsSelected, verifyOrderPayload } from "./helpers";
 
 function Orders() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -47,14 +47,21 @@ function Orders() {
       products: productsIds,
     };
 
-    saveOrder(payload)
+    const verifyPayload = verifyOrderPayload(payload);
+
+    if (verifyPayload) {
+      saveOrder(payload)
       .then((response) => {
         toast.error(`Pedido enviado com sucesso! Nº ${response.data.id}`);
         setSelectedProducts([]);
       })
       .catch(() => {
-        toast.warning("Erro ao enviar pedido");
+        toast.warning("Erro ao enviar pedido.");
       });
+    } else { 
+      toast.warning('Nenhum produto foi selecionado ou endereço não cadastrado.');
+    }
+
   };
 
   return (
