@@ -44,6 +44,6 @@ Agora você pode testar a aplicação normalmente.
 4. Dayjs
 5. Axios
 
-## Expo
+## 🗺️ Expo
 Link para mais informações e download do aplicativel móvel `Expo`: 
 https://expo.io/
