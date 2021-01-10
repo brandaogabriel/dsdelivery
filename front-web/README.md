@@ -2,8 +2,6 @@
 
 O frontend foi desenvolvido durante a 2ª semana do DevSuperior.
 
-A aplicação foi desenvolvida com typescript e reactjs.
-
 A implantação do frontend foi feita na netlify e o site pode ser visto aqui: 
 https://gabrielbrandao-dsdelivery.netlify.app/
 

@@ -2,8 +2,6 @@
 
 O frontend mobile foi desenvolvido durante a 2ª semana do DevSuperior.
 
-A aplicação foi desenvolvida com typescript e react native.
-
 **Atenção**: 
 - Para subir a aplicação localmente é necessário ter o `node` instalado na máquina.
 
